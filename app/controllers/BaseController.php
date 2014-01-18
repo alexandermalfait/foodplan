@@ -12,7 +12,7 @@ abstract class BaseController extends Controller {
 
     /** @noinspection PhpUnusedPrivateMethodInspection */
     public function shareViewData($route, $request) {
-        View::share('currentUser', $this->geCurrentUser());
+        View::share('currentUser', $this->getCurrentUser());
     }
 
     protected function renderInLayout(\Illuminate\View\View $view) {
@@ -23,7 +23,7 @@ abstract class BaseController extends Controller {
         return "layouts/base";
     }
 
-    protected function geCurrentUser() {
+    protected function getCurrentUser() {
         if (Cookie::get('user_id') && Cookie::get('user_password')) {
             $users = Doctrine::createQuery(
                 "SELECT u FROM AppUser u WHERE u.id = :id AND u.password = :password"
