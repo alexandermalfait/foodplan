@@ -12,9 +12,31 @@ form {
     }
 }
 
-
 #dishes-list {
     .dish {
         margin-bottom: .5em;
+    }
+}
+
+.preparation-time {
+    input {
+        float: left;
+        margin-right: .5em;
+    }
+
+    .stars {
+        float: left;
+    }
+
+    .clearfix;
+}
+
+.clearfix {
+    &:after {
+        content: " "; /* Older browser do not support empty content */
+        visibility: hidden;
+        display: block;
+        height: 0;
+        clear: both;
     }
 }

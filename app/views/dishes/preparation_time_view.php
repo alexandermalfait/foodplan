@@ -1,0 +1,1 @@
+<div class="preparation-time-view" data-value="<?= $value ?>"></div>

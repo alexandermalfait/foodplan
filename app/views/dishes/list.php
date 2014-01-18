@@ -12,7 +12,9 @@
         <div class="dish">
             <?= link_to_action("DishesController@getEdit", $dish->getName(), ['id' => $dish->getId()]) ?>
 
-            <?= View::make('dishes/preparation_time', ['value' => $dish->getPreparationTime()]) ?>
+            (<?= $dish->getMinWeeksBetweenSuggestion() ?>w)
+
+            <?= View::make('dishes/preparation_time_view', ['value' => $dish->getPreparationTime()]) ?>
         </div>
     <? } ?>
 </div>
