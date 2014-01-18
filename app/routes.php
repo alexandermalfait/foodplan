@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'HomeController@showWelcome');
+Route::get('/', [ 'as' => 'home', 'uses' => 'HomeController@showWelcome' ]);
 
-Route::get('/users/login', 'UsersController@login');
-Route::post('/users/login/execute', 'UsersController@executeLogin');
-Route::post('/users/register/execute', 'UsersController@executeRegister');
+Route::controller('users', 'UsersController');

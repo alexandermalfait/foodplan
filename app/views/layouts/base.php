@@ -1,3 +1,4 @@
+<? /** @var $currentUser AppUser */ ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,5 +12,13 @@
 </head>
 <body>
     <?= $content ?>
+
+    <hr />
+
+    <? if($currentUser) { ?>
+        <?= e($currentUser->getEmail()) ?>
+        -
+        <?= link_to_action('UsersController@getLogout', 'Log out') ?>
+    <? } ?>
 </body>
 </html>

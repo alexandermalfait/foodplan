@@ -1,26 +1,26 @@
 <h1>Login</h1>
 
-<form method="post" action="<?= action('UsersController@executeLogin') ?>">
+<form method="post" action="<?= action('UsersController@postExecuteLogin') ?>">
     Email:
     <?= Form::input("text", "email") ?>
 
     Password:
-    <?= Form::input("text", "password") ?>
+    <?= Form::password("password") ?>
 
     <?= Form::submit("Login") ?>
 </form>
 
 <h1>Register</h1>
 
-<form method="post" action="<?= action('UsersController@executeRegister') ?>">
+<form method="post" action="<?= action('UsersController@postExecuteRegister') ?>">
     Email:
     <?= Form::input("text", "email") ?>
 
     Password:
-    <?= Form::input("text", "password") ?>
+    <?= Form::password("password") ?>
 
     Repeat Password:
-    <?= Form::input("text", "repeat_password") ?>
+    <?= Form::password("repeat_password") ?>
 
     <?= Form::submit("Login") ?>
 </form>
