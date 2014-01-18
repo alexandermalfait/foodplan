@@ -1,0 +1,8 @@
+/bootstrap/compiled.php
+/public/upload
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+.idea
+app/storage
