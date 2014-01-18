@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'HomeController@showWelcome');
+
+Route::get('/users/login', 'UsersController@login');
+Route::post('/users/login/execute', 'UsersController@executeLogin');
+Route::post('/users/register/execute', 'UsersController@executeRegister');

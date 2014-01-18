@@ -10868,7 +10868,7 @@ class Doctrine extends Atrauzzi\LaravelDoctrine\Support\Facades\Doctrine{
 	 * @static 
 	 */
 	 public static function createQuery($dql = ''){
-		 Doctrine\ORM\EntityManager::createQuery($dql);
+		 return Doctrine\ORM\EntityManager::createQuery($dql);
 	 }
 
 	/**
