@@ -46,7 +46,7 @@ return array(
 	|
 	*/
 	'proxy_classes' => array(
-		'auto_generate' => false,
+		'auto_generate' => true,
 		'directory' => null,
 		'namespace' => null,
 	),

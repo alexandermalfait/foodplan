@@ -16,3 +16,5 @@ Route::get('/', [ 'as' => 'home', 'uses' => 'HomeController@showWelcome' ]);
 Route::controller('users', 'UsersController');
 
 Route::controller('dishes', 'DishesController');
+
+Route::controller('planning', 'PlanningController');

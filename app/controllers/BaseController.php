@@ -16,7 +16,7 @@ abstract class BaseController extends Controller {
     }
 
     protected function renderInLayout(\Illuminate\View\View $view) {
-        return View::make($this->getLayout(), array('content' => $view));
+        return View::make($this->getLayout(), array('content' => $view->render()));
     }
 
     protected function getLayout() {
@@ -25,18 +25,15 @@ abstract class BaseController extends Controller {
 
     protected function getCurrentUser() {
         if (Cookie::get('user_id') && Cookie::get('user_password')) {
-            $users = Doctrine::createQuery(
+            return Doctrine::createQuery(
                 "SELECT u FROM AppUser u WHERE u.id = :id AND u.password = :password"
             )
             ->setParameter("id", Cookie::get('user_id'))
             ->setParameter("password", Cookie::get('user_password'))
-            ->getResult();
-
-            if ($users) {
-                return $users[0];
-            }
+            ->getOneOrNullResult();
         }
-
-        return null;
+        else {
+            return null;
+        }
     }
 }

@@ -90,5 +90,9 @@ class Dish extends BaseEntity {
         return $this->user;
     }
 
+    function __toString() {
+        return $this->getName();
+    }
+
 
 } 

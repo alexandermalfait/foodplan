@@ -7,15 +7,15 @@ class UsersController extends BaseController {
     }
 
     public function postExecuteLogin() {
-        $users = Doctrine::createQuery(
+        $user = Doctrine::createQuery(
             "SELECT u FROM AppUser u WHERE u.email = :email AND u.password = :password"
         )
         ->setParameter("email", Input::get('email'))
         ->setParameter("password", Input::get('password'))
-        ->getResult();
+        ->getOneOrNullResult();
 
-        if ($users) {
-            return $this->loginUser(Redirect::home(), $users[0]);
+        if ($user) {
+            return $this->loginUser(Redirect::home(), $user);
         }
         else {
             return Redirect::action('UsersController@login', [ 'message' => 'Login failed' ]);
