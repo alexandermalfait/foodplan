@@ -2,35 +2,46 @@
 /** @var $dates array */
 ?>
 
-<? foreach($dates as $row) { ?>
-    <?
-    /**
-     * @var $date DateTime
-     * @var $planning DishPlanning
-     */
-    $date = $row['date'];
-    $planning = $row['planning'];
-    ?>
+<div id="week-planning">
+    <? foreach($dates as $row) { ?>
+        <?
+        /**
+         * @var $date DateTime
+         * @var $planning DishPlanning
+         */
+        $date = $row['date'];
+        $planning = $row['planning'];
+        ?>
 
-    <a name="<?= date_param($date) ?>"></a>
+        <a name="<?= date_param($date) ?>"></a>
 
-    <h1><?= $date->format("l d M Y") ?></h1>
+        <div class="week-date">
+            <div class="date">
+                <span class="week-day">
+                    <?= $date->format("l") ?>
+                </span>
 
-    <br />
+                <span class="full-date">
+                    <?= $date->format("d M y") ?>
+                </span>
+            </div>
 
-    <? if($planning) { ?>
-        <strong><?= $planning->getDish() ?></strong>
+            <? if($planning) { ?>
+                <div class="planned-dish">
+                    <?= $planning->getDish() ?>
+                </div>
+            <? } ?>
 
-        <br />
+            <a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>">
+                Suggestion
+            </a>
+
+            <br />
+
+            <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>">
+                Pick myself
+            </a>
+        </div>
     <? } ?>
 
-    <a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>">
-        Suggestion
-    </a>
-
-    <br />
-
-    <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>">
-        Pick myself
-    </a>
-<? } ?>
+</div>

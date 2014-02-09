@@ -15,19 +15,24 @@
 
     <link href='<?= asset_with_ts('css/style.css') ?>' type="text/css" rel="stylesheet"/>
 
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <link href='<?= asset_with_ts('css/smartphone.css') ?>' type="text/css" rel="stylesheet" media="screen and (max-device-width: 480px)"/>
+
     <script src="<?= asset('raty-2.5.2/lib/jquery.raty.min.js') ?>" type="text/javascript"></script>
 </head>
 <body>
-    <?= $content ?>
+    <div id="container">
+        <?= $content ?>
 
-    <hr />
+        <hr />
 
-    <? if($currentUser) { ?>
-        <?= e($currentUser->getEmail()) ?>
-        -
-        <?= link_to_action('DishesController@getIndex', 'Dishes') ?>
-        -
-        <?= link_to_action('UsersController@getLogout', 'Log out') ?>
-    <? } ?>
+        <? if($currentUser) { ?>
+            <?= e($currentUser->getEmail()) ?>
+            -
+            <?= link_to_action('DishesController@getIndex', 'Dishes') ?>
+            -
+            <?= link_to_action('UsersController@getLogout', 'Log out') ?>
+        <? } ?>
+    </div>
 </body>
 </html>

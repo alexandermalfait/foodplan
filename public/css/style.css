@@ -1,5 +1,33 @@
 body {
   font-family: sans-serif;
+  background: url("../images/food.jpg");
+  font-size: 14px;
+}
+#container {
+  max-width: 500px;
+  margin: 1em auto;
+  background: white;
+  border: 1px solid silver;
+  border-radius: 15px;
+  padding: 1em;
+}
+#week-planning .week-date {
+  border-bottom: 1px dotted silver;
+  padding: .5em 0;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+#week-planning .week-date .date .week-day {
+  font-size: 1.7em;
+}
+#week-planning .week-date .date .full-date {
+  font-size: 1em;
+  color: gray;
+}
+#week-planning .week-date .planned-dish {
+  margin: .3em 0;
+  font-size: 1.5em;
+  color: #1c882e;
 }
 form .form-row {
   margin-bottom: 1em;
