@@ -23,7 +23,7 @@
 <body>
     <div id="container">
         <div id="title-bar">
-            Dinner Picker
+            And the dinner is...
         </div>
 
         <?= $content ?>

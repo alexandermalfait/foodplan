@@ -6,13 +6,18 @@ body {
 body a {
   color: #000049;
 }
-body a.button {
+body a.button,
+body button.button {
   display: inline-block;
+  border: none;
   border-radius: 5px;
+  font-size: 1em;
   padding: .5em;
   background: #008080;
   color: white;
   text-decoration: none;
+  margin: 0;
+  cursor: pointer;
 }
 body .actions:after {
   content: " ";
@@ -28,6 +33,9 @@ body .actions a {
 }
 body .actions a.right {
   float: right;
+  margin-right: 0;
+}
+body .actions a.last {
   margin-right: 0;
 }
 #container {
@@ -80,6 +88,15 @@ body .actions a.right {
   margin: .3em 0;
   font-size: 1.5em;
   color: #1c882e;
+}
+#week-planning .week-date .actions .make-suggestion {
+  float: left;
+  margin-right: 2em;
+}
+#week-planning .week-date .actions .make-suggestion .preparation-time {
+  float: left;
+  margin-right: .5em;
+  margin-top: .4em;
 }
 form .form-row {
   margin-bottom: 1em;

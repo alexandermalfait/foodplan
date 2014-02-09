@@ -7,13 +7,17 @@ body {
         color: #000049;
     }
 
-    a.button {
+    a.button, button.button {
         display: inline-block;
+        border: none;
         border-radius: 5px;
+        font-size: 1em;
         padding: .5em;
         background: #008080;
         color: white;
         text-decoration: none;
+        margin: 0;
+        cursor: pointer;
     }
 
     .actions {
@@ -26,6 +30,10 @@ body {
 
         a.right {
             float: right;
+            margin-right: 0;
+        }
+
+        a.last {
             margin-right: 0;
         }
     }
@@ -90,6 +98,19 @@ body {
             margin: .3em 0;
             font-size: 1.5em;
             color: #1c882e;
+        }
+
+        .actions {
+            .make-suggestion {
+                float: left;
+                margin-right: 2em;
+
+                .preparation-time {
+                    float: left;
+                    margin-right: .5em;
+                    margin-top: .4em;
+                }
+            }
         }
     }
 }

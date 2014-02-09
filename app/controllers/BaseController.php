@@ -23,6 +23,9 @@ abstract class BaseController extends Controller {
         return "layouts/base";
     }
 
+    /**
+     * @return AppUser|null
+     */
     protected function getCurrentUser() {
         if (Cookie::get('user_id') && Cookie::get('user_password')) {
             return Doctrine::createQuery(

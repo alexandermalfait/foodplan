@@ -10901,7 +10901,8 @@ class Doctrine extends Atrauzzi\LaravelDoctrine\Support\Facades\Doctrine{
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @static 
+	 * @static
+     * @return \Doctrine\ORM\QueryBuilder
 	 */
 	 public static function createQueryBuilder(){
 		 Doctrine\ORM\EntityManager::createQueryBuilder();

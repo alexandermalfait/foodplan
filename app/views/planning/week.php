@@ -39,11 +39,17 @@
             </div>
 
             <div class="actions">
-                <a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>" class="button">
-                    Suggestion
-                </a>
+                <form action="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>" class="make-suggestion">
+                    <div class="preparation-time">
+                        <input type="hidden" name="preparation_time" />
 
-                <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>"  class="button">
+                        <div class="stars"></div>
+                    </div>
+
+                    <button class="button" type="submit">Suggestion</button>
+                </form>
+
+                <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>"  class="button last">
                     Pick myself
                 </a>
             </div>

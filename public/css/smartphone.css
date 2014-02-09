@@ -1,4 +1,16 @@
+body {
+    font-size: 12px;
+}
+
 #container {
     margin: .3em;
     padding: .5em;
+}
+
+.actions a {
+    margin-right: .5em;
+}
+
+#week-planning .week-date .actions .preparation-time {
+    margin-right: 0;
 }

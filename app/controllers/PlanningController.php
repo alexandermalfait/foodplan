@@ -32,13 +32,43 @@ class PlanningController extends BaseController {
 
 
     public function getMakeSuggestion($date) {
+        $maxPreparationTime = intval(Input::get('preparation_time', 0));
+
         $date = new DateTime($date);
 
-        $possibleDishes = Doctrine::createQuery(
-            "SELECT d FROM Dish d WHERE d.user = :user"
-        )
-        ->setParameters(['user' => $this->getCurrentUser() ])
-        ->getResult();
+        /**
+         * @var $query \Doctrine\ORM\QueryBuilder
+         */
+        $query = Doctrine::createQueryBuilder()->select('d')->from("Dish", "d");
+
+        $query = $query->andWhere("d.user = :user");
+        $query->setParameter("user", $this->getCurrentUser());
+
+        if ($maxPreparationTime > 0) {
+            $query = $query->andWhere("d.preparationTime <= $maxPreparationTime");
+        }
+
+        $possibleDishes = $query->getQuery()->getResult();
+
+        $possibleDishes = array_filter($possibleDishes, function(Dish $dish) use($date) {
+            $lastPlanningDate = Doctrine::createQuery(
+                "SELECT MAX(p.date) FROM DishPlanning p WHERE p.dish = :dish"
+            )->setParameter("dish", $dish)->getSingleScalarResult();
+
+            if ($lastPlanningDate) {
+                $lastPlanningDate = new DateTime($lastPlanningDate);
+
+                $date = clone($date);
+                $interval = new DateInterval("P" . $dish->getMinWeeksBetweenSuggestion() . "W");
+
+                return $lastPlanningDate->getTimestamp() < $date->sub($interval)->getTimestamp();
+            }
+            else {
+                return true;
+            }
+        });
+
+        $possibleDishes = array_values($possibleDishes);
 
         if($possibleDishes) {
             $dish = $possibleDishes[rand(0, sizeof($possibleDishes) - 1)];
