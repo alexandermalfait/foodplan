@@ -17,5 +17,31 @@ function date_add_days(DateTime $date, $days) {
     else {
         return $clone->sub(new DateInterval("P". abs($days) . "D"));
     }
+}
 
+function date_get_monday(DateTime $date) {
+    while($date->format("N") != "1") {
+        $date = date_add_days($date, -1);
+    }
+
+    return $date;
+}
+
+/**
+ * @param DateTime $monday
+ * @return DateTime[]
+ */
+function date_get_dates_in_week(DateTime $monday) {
+    $dates = [ $monday ];
+
+    $date = $monday;
+
+    do {
+        $date = date_add_days($date, 1);
+
+        $dates[] = $date;
+    }
+    while($date->format("N") != "7");
+
+    return $dates;
 }

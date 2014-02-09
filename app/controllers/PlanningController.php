@@ -3,25 +3,27 @@
 class PlanningController extends BaseController {
 
     public function getIndex() {
-        return Redirect::action("PlanningController@getDate", [ 'date' => date('Y-m-d') ]);
+        return $this->getRedirectToWeek(new DateTime());
     }
 
-    public function getDate($date) {
-        $date = new DateTime($date);
+    public function getWeek($monday) {
+        $monday = new DateTime($monday);
 
-        $planning = Doctrine::createQuery(
-            "SELECT p FROM DishPlanning p WHERE p.user = :user AND p.date = :date"
-        )
-        ->setParameters([ 'user' => $this->getCurrentUser(), 'date' => $date ])
-        ->getOneOrNullResult();
+        $dates = [];
 
-        return $this->renderInLayout(View::make("planning/date", [
-            'date' => $date,
-            'planning' => $planning,
-            'dayAfter' => date_add_days($date, 1),
-            'dayBefore' => date_add_days($date, -1)
-        ]));
+        foreach(date_get_dates_in_week($monday) as $date) {
+            $planning = Doctrine::createQuery(
+                "SELECT p FROM DishPlanning p WHERE p.user = :user AND p.date = :date"
+            )
+            ->setParameters(['user' => $this->getCurrentUser(), 'date' => $date])
+            ->getOneOrNullResult();
+
+            $dates[] = [ 'date' => $date, 'planning' => $planning ];
+        }
+
+        return $this->renderInLayout(View::make("planning/week", [ 'dates' => $dates ]));
     }
+
 
     public function getMakeSuggestion($date) {
         $date = new DateTime($date);
@@ -38,7 +40,7 @@ class PlanningController extends BaseController {
             $this->planDish($date, $dish);
         }
 
-        return Redirect::action("PlanningController@getDate", [ 'date' => date_param($date) ]);
+        return $this->getRedirectToWeek($date);
     }
 
     /**
@@ -71,7 +73,7 @@ class PlanningController extends BaseController {
 
         $this->planDish($date, Doctrine::find('Dish', $dishId));
 
-        return Redirect::action("PlanningController@getDate", [ 'date' => date_param($date) ]);
+        return $this->getRedirectToWeek($date);
     }
 
     private function planDish(DateTime $date, Dish $dish) {
@@ -84,6 +86,13 @@ class PlanningController extends BaseController {
         $planning->setDish($dish);
 
         Doctrine::persist($planning);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function getRedirectToWeek(DateTime $date) {
+        return Redirect::to(action("PlanningController@getWeek", ['monday' => date_param(date_get_monday($date))]) . "#" .date_param($date));
     }
 
 } 
