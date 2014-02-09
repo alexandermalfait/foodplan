@@ -2,8 +2,8 @@
 
 class UsersController extends BaseController {
 
-    public function getLogin() {
-        return $this->renderInLayout(View::make('users/login'));
+    public function getLogin($message = null) {
+        return $this->renderInLayout(View::make('users/login', [ 'message' => $message ]));
     }
 
     public function postExecuteLogin() {
@@ -18,7 +18,7 @@ class UsersController extends BaseController {
             return $this->loginUser(Redirect::action("PlanningController@getIndex"), $user);
         }
         else {
-            return Redirect::action('UsersController@login', [ 'message' => 'Login failed' ]);
+            return Redirect::action('UsersController@getLogin', [ 'message' => 'Login failed' ]);
         }
     }
 

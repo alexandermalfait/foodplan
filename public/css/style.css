@@ -39,6 +39,13 @@ body .actions a.right {
 body .actions a.last {
   margin-right: 0;
 }
+body .message {
+  background: #e0332d;
+  border-radius: 5px;
+  color: white;
+  padding: 1em;
+  font-size: 1.2em;
+}
 #container {
   max-width: 500px;
   margin: 1em auto;

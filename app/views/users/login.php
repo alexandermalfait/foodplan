@@ -1,3 +1,7 @@
+<? if($message) { ?>
+    <div class="message"><?= e($message) ?></div>
+<? } ?>
+
 <h1>Login</h1>
 
 <form method="post" action="<?= action('UsersController@postExecuteLogin') ?>">
