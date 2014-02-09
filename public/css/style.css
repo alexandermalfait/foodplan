@@ -58,6 +58,10 @@ body .actions a.last {
   padding-top: 1em;
   font-size: 2em;
 }
+#title-bar a {
+  color: white;
+  text-decoration: none;
+}
 #action-bar {
   background: #b0a567;
   text-align: center;

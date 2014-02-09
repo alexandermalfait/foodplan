@@ -23,7 +23,7 @@
 <body>
     <div id="container">
         <div id="title-bar">
-            And the dinner is...
+            <a href="<?= route('home') ?>">And the dinner is...</a>
         </div>
 
         <?= $content ?>
