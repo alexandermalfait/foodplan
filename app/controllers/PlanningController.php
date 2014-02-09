@@ -21,7 +21,13 @@ class PlanningController extends BaseController {
             $dates[] = [ 'date' => $date, 'planning' => $planning ];
         }
 
-        return $this->renderInLayout(View::make("planning/week", [ 'dates' => $dates ]));
+        return $this->renderInLayout(
+            View::make("planning/week", [
+                'dates' => $dates,
+                'nextMonday' => date_add_days($monday, 7),
+                'previousMonday' => date_add_days($monday, -7)
+            ])
+        );
     }
 
 

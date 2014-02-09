@@ -1,5 +1,9 @@
 <?
-/** @var $dates array */
+/**
+ * @var $dates array
+ * @var $previousMonday DateTime
+ * @var $nextMonday DateTime
+ */
 ?>
 
 <div id="week-planning">
@@ -26,11 +30,13 @@
                 </span>
             </div>
 
-            <? if($planning) { ?>
-                <div class="planned-dish">
+            <div class="planned-dish">
+                <? if($planning) { ?>
                     <?= $planning->getDish() ?>
-                </div>
-            <? } ?>
+                <? } else { ?>
+                    ???
+                <? } ?>
+            </div>
 
             <div class="actions">
                 <a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>" class="button">
@@ -44,4 +50,13 @@
         </div>
     <? } ?>
 
+    <div class="actions">
+        <a href="<?= action('PlanningController@getWeek', [ 'date' => date_param($nextMonday) ]) ?>"  class="button">
+            &raquo; Next Week
+        </a>
+
+        <a href="<?= action('PlanningController@getWeek', [ 'date' => date_param($previousMonday) ]) ?>"  class="button right">
+            &laquo; Previous Week
+        </a>
+    </div>
 </div>
