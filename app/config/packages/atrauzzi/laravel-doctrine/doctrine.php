@@ -17,7 +17,7 @@ return array(
 		'driver'    => 'pdo_pgsql',
 		'user'		=> 'postgres',
 		'password'	=> 'olifant',
-		'dbname'	=> 'dinnerpicker',
+		'dbname'	=> 'foodplan',
 		'host'		=> 'localhost',
 		'prefix'	=> ''
 	),
