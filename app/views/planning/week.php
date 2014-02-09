@@ -20,15 +20,7 @@
         <a name="<?= date_param($date) ?>"></a>
 
         <div class="week-date <?= $row['day_class'] ?>">
-            <div class="date">
-                <span class="week-day">
-                    <?= $date->format("l") ?>
-                </span>
-
-                <span class="full-date">
-                    <?= $date->format("d M y") ?>
-                </span>
-            </div>
+            <?= View::make('planning/date', [ 'date' => $date ]) ?>
 
             <? if($planning) { ?>
                 <div class="planned-dish">

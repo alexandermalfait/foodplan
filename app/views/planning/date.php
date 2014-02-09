@@ -1,30 +1,11 @@
-<?
-/** @var $date DateTime */
-/** @var $dayBefore DateTime */
-/** @var $dayAfter DateTime */
-/** @var $planning DishPlanning */
-?>
+<? /** @var $date DateTime */ ?>
 
-<h1><?= $date->format("l d M Y") ?></h1>
+<div class="date">
+    <span class="week-day">
+        <?= $date->format("l") ?>
+    </span>
 
-<?= link_to_action("PlanningController@getDate", "<<", [ 'date' => date_param($dayBefore)]) ?>
-
-<?= link_to_action("PlanningController@getDate", ">>", [ 'date' => date_param($dayAfter)]) ?>
-
-<br />
-
-<? if($planning) { ?>
-    <strong><?= $planning->getDish() ?></strong>
-
-    <br />
-<? } ?>
-
-<a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>">
-    Suggestion
-</a>
-
-<br />
-
-<a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>">
-    Pick myself
-</a>
+    <span class="full-date">
+        <?= $date->format("d M y") ?>
+    </span>
+</div>

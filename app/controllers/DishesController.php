@@ -17,8 +17,12 @@ class DishesController extends BaseController {
         return $this->renderInLayout(View::make('dishes/list')->with('dishes', $dishes));
     }
 
-    public function getCreate() {
-        return $this->renderInLayout(View::make('dishes/create'));
+    public function getCreate($forDate = null) {
+        if ($forDate) {
+            $forDate = new DateTime($forDate);
+        }
+
+        return $this->renderInLayout(View::make('dishes/create', [ 'forDate' => $forDate ]));
     }
 
     public function getEdit($id) {
@@ -41,8 +45,16 @@ class DishesController extends BaseController {
         $this->bindInput($dish);
 
         Doctrine::persist($dish);
+        Doctrine::flush();
 
-        return Redirect::action("DishesController@getIndex");
+        if (Input::get("for_date")) {
+            return Redirect::action(
+                "PlanningController@getSavePickDish", [ 'date' => Input::get("for_date"), 'dishId' => $dish->getId() ]
+            );
+        }
+        else {
+            return Redirect::action("DishesController@getIndex");
+        }
     }
 
     /**

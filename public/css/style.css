@@ -72,6 +72,13 @@ body .actions a.last {
   margin: 0 .7em;
   text-decoration: none;
 }
+.date .week-day {
+  font-size: 1.7em;
+}
+.date .full-date {
+  font-size: 1em;
+  color: gray;
+}
 #week-planning .week-date {
   border-bottom: 1px dotted silver;
   padding: 1em .5em;
@@ -81,13 +88,6 @@ body .actions a.last {
 }
 #week-planning .week-date.weekend {
   background: #F8F8F8;
-}
-#week-planning .week-date .date .week-day {
-  font-size: 1.7em;
-}
-#week-planning .week-date .date .full-date {
-  font-size: 1em;
-  color: gray;
 }
 #week-planning .week-date .planned-dish {
   margin: .3em 0;
@@ -117,6 +117,9 @@ form .form-row {
 form .form-row label {
   display: block;
 }
+#dishes-list {
+  margin-top: 1em;
+}
 #dishes-list a.create-new {
   font-size: 1.5em;
   margin-bottom: 1em;
@@ -139,6 +142,9 @@ form .form-row label {
   display: block;
   height: 0;
   clear: both;
+}
+#dish-form input.dish-name {
+  width: 90%;
 }
 .clearfix:after {
   content: " ";

@@ -76,6 +76,17 @@ body {
     }
 }
 
+.date {
+    .week-day {
+        font-size: 1.7em;
+    }
+
+    .full-date {
+        font-size: 1em;
+        color: gray;
+    }
+}
+
 #week-planning {
     .week-date {
         border-bottom: 1px dotted silver;
@@ -87,17 +98,6 @@ body {
 
         &.weekend {
             background: #F8F8F8;
-        }
-
-        .date {
-            .week-day {
-                font-size: 1.7em;
-            }
-
-            .full-date {
-                font-size: 1em;
-                color: gray;
-            }
         }
 
         .planned-dish {
@@ -142,6 +142,8 @@ form {
 }
 
 #dishes-list {
+    margin-top: 1em;
+
     a.create-new {
         font-size: 1.5em;
         margin-bottom: 1em;
@@ -164,6 +166,13 @@ form {
     }
 
     .clearfix;
+}
+
+
+#dish-form {
+    input.dish-name {
+        width: 90%;
+    }
 }
 
 .clearfix {
