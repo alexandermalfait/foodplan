@@ -19,7 +19,7 @@
 
         <a name="<?= date_param($date) ?>"></a>
 
-        <div class="week-date">
+        <div class="week-date <?= $row['day_class'] ?>">
             <div class="date">
                 <span class="week-day">
                     <?= $date->format("l") ?>
@@ -30,13 +30,13 @@
                 </span>
             </div>
 
-            <div class="planned-dish">
-                <? if($planning) { ?>
+            <? if($planning) { ?>
+                <div class="planned-dish">
                     <?= $planning->getDish() ?>
-                <? } else { ?>
-                    ???
-                <? } ?>
-            </div>
+                </div>
+            <? } else { ?>
+                <div class="no-planned-dish">???</div>
+            <? } ?>
 
             <div class="actions">
                 <form action="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>" class="make-suggestion">
@@ -50,19 +50,19 @@
                 </form>
 
                 <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>"  class="button last">
-                    Pick myself
+                    Pick
                 </a>
             </div>
         </div>
     <? } ?>
 
-    <div class="actions">
-        <a href="<?= action('PlanningController@getWeek', [ 'date' => date_param($nextMonday) ]) ?>"  class="button">
-            &raquo; Next Week
+    <div class="actions week-navigation">
+        <a href="<?= action('PlanningController@getWeek', [ 'date' => date_param($previousMonday) ]) ?>"  class="button">
+            &laquo; Previous Week
         </a>
 
-        <a href="<?= action('PlanningController@getWeek', [ 'date' => date_param($previousMonday) ]) ?>"  class="button right">
-            &laquo; Previous Week
+        <a href="<?= action('PlanningController@getWeek', [ 'date' => date_param($nextMonday) ]) ?>"  class="button right">
+            &raquo; Next Week
         </a>
     </div>
 </div>

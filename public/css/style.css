@@ -73,9 +73,13 @@ body .actions a.last {
 }
 #week-planning .week-date {
   border-bottom: 1px dotted silver;
-  padding: .5em 0;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
+  padding: 1em .5em;
+}
+#week-planning .week-date.today {
+  background: #d4f8d8;
+}
+#week-planning .week-date.weekend {
+  background: #F8F8F8;
 }
 #week-planning .week-date .date .week-day {
   font-size: 1.7em;
@@ -89,6 +93,11 @@ body .actions a.last {
   font-size: 1.5em;
   color: #1c882e;
 }
+#week-planning .week-date .no-planned-dish {
+  margin: .3em 0;
+  font-size: 1.5em;
+  color: #cbcdc4;
+}
 #week-planning .week-date .actions .make-suggestion {
   float: left;
   margin-right: 2em;
@@ -97,6 +106,9 @@ body .actions a.last {
   float: left;
   margin-right: .5em;
   margin-top: .4em;
+}
+#week-planning .week-navigation {
+  margin-top: 2em;
 }
 form .form-row {
   margin-bottom: 1em;

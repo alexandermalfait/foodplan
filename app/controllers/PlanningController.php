@@ -18,7 +18,18 @@ class PlanningController extends BaseController {
             ->setParameters(['user' => $this->getCurrentUser(), 'date' => $date])
             ->getOneOrNullResult();
 
-            $dates[] = [ 'date' => $date, 'planning' => $planning ];
+            $row = ['date' => $date, 'planning' => $planning];
+
+            $row['day_class'] = '';
+
+            if (date_param($date) == date_param(new DateTime())) {
+                $row['day_class'] = 'today';
+            }
+            else if(in_array($date->format('N'), [ 6, 7 ])) {
+                $row['day_class'] = 'weekend';
+            }
+
+            $dates[] = $row;
         }
 
         return $this->renderInLayout(

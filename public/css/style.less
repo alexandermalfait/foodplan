@@ -79,9 +79,15 @@ body {
 #week-planning {
     .week-date {
         border-bottom: 1px dotted silver;
-        padding: .5em 0;
-        padding-bottom: 1em;
-        margin-bottom: 1em;
+        padding: 1em .5em;
+
+        &.today {
+            background: #d4f8d8;
+        }
+
+        &.weekend {
+            background: #F8F8F8;
+        }
 
         .date {
             .week-day {
@@ -100,6 +106,12 @@ body {
             color: #1c882e;
         }
 
+        .no-planned-dish {
+            margin: .3em 0;
+            font-size: 1.5em;
+            color: #cbcdc4;
+        }
+
         .actions {
             .make-suggestion {
                 float: left;
@@ -112,6 +124,10 @@ body {
                 }
             }
         }
+    }
+
+    .week-navigation {
+        margin-top: 2em;
     }
 }
 
