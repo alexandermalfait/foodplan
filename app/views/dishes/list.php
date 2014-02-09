@@ -1,12 +1,7 @@
 <? /** @var $dishes Dish[] */ ?>
 
-<h1>
-    Dishes
-
-    <?= link_to_action("DishesController@getCreate", "Create new") ?>
-</h1>
-
 <div id="dishes-list">
+    <?= link_to_action("DishesController@getCreate", "Create new dish", [], [ 'class' => 'button create-new']) ?>
 
     <? foreach ($dishes as $dish) { ?>
         <div class="dish">
