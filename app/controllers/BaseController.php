@@ -15,6 +15,15 @@ abstract class BaseController extends Controller {
         View::share('currentUser', $this->getCurrentUser());
     }
 
+    public function checkLogin($route, $request) {
+        if ($this->getCurrentUser() == null) {
+            return Redirect::action("UsersController@getLogin");
+        }
+        else {
+            return null;
+        }
+    }
+
     protected function renderInLayout(\Illuminate\View\View $view) {
         return View::make($this->getLayout(), array('content' => $view->render()));
     }

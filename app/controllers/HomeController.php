@@ -4,6 +4,11 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return Redirect::action("UsersController@getLogin");
+        if ($this->getCurrentUser()) {
+            return Redirect::action("PlanningController@getIndex");
+        }
+        else {
+            return Redirect::action("UsersController@getLogin");
+        }
 	}
 }

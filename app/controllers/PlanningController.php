@@ -2,6 +2,11 @@
 
 class PlanningController extends BaseController {
 
+    function __construct() {
+        parent::__construct();
+        $this->beforeFilter('@checkLogin');
+    }
+
     public function getIndex() {
         return $this->getRedirectToWeek(new DateTime());
     }

@@ -15,7 +15,7 @@ class UsersController extends BaseController {
         ->getOneOrNullResult();
 
         if ($user) {
-            return $this->loginUser(Redirect::home(), $user);
+            return $this->loginUser(Redirect::action("PlanningController@getIndex"), $user);
         }
         else {
             return Redirect::action('UsersController@login', [ 'message' => 'Login failed' ]);

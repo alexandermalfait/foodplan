@@ -1,26 +1,41 @@
 <h1>Login</h1>
 
 <form method="post" action="<?= action('UsersController@postExecuteLogin') ?>">
-    Email:
-    <?= Form::input("text", "email") ?>
+    <div class="form-row">
+        <label>Email:</label>
 
-    Password:
-    <?= Form::password("password") ?>
+        <?= Form::input("text", "email") ?>
+    </div>
 
-    <?= Form::submit("Login") ?>
+    <div class="form-row">
+        <label>Password:</label>
+
+        <?= Form::password("password") ?>
+    </div>
+
+    <?= Form::submit("Login", [ 'class' => 'button']) ?>
 </form>
 
 <h1>Register</h1>
 
 <form method="post" action="<?= action('UsersController@postExecuteRegister') ?>">
-    Email:
-    <?= Form::input("text", "email") ?>
+    <div class="form-row">
+        <label>Email:</label>
 
-    Password:
-    <?= Form::password("password") ?>
+        <?= Form::input("text", "email") ?>
+    </div>
 
-    Repeat Password:
-    <?= Form::password("repeat_password") ?>
+    <div class="form-row">
+        <label>Password:</label>
 
-    <?= Form::submit("Login") ?>
+        <?= Form::password("password") ?>
+    </div>
+
+    <div class="form-row">
+        <label>Repeat Password:</label>
+
+        <?= Form::password("repeat_password") ?>
+    </div>
+
+    <?= Form::submit("Register", [ 'class' => 'button']) ?>
 </form>

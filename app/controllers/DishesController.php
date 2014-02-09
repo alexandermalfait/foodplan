@@ -2,6 +2,11 @@
 
 class DishesController extends BaseController {
 
+    function __construct() {
+        parent::__construct();
+        $this->beforeFilter('@checkLogin');
+    }
+
     public function getIndex() {
         $dishes = Doctrine::createQuery(
             "SELECT d FROM Dish d WHERE d.user = :user ORDER BY d.name"

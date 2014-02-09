@@ -7,7 +7,8 @@ body a {
   color: #000049;
 }
 body a.button,
-body button.button {
+body button.button,
+body input.button {
   display: inline-block;
   border: none;
   border-radius: 5px;
