@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Laravel PHP Framework</title>
+    <title>And the dinner is...</title>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
