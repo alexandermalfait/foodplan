@@ -22,16 +22,20 @@
 </head>
 <body>
     <div id="container">
+        <div id="title-bar">
+            Dinner Picker
+        </div>
+
         <?= $content ?>
 
-        <hr />
-
         <? if($currentUser) { ?>
-            <?= e($currentUser->getEmail()) ?>
-            -
-            <?= link_to_action('DishesController@getIndex', 'Dishes') ?>
-            -
-            <?= link_to_action('UsersController@getLogout', 'Log out') ?>
+            <div id="action-bar">
+                <?= link_to_action('PlanningController@getIndex', 'Planning') ?>
+
+                <?= link_to_action('DishesController@getIndex', 'Dishes') ?>
+
+                <?= link_to_action('UsersController@getLogout', 'Log out') ?>
+            </div>
         <? } ?>
     </div>
 </body>

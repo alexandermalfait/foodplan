@@ -3,6 +3,17 @@ body {
   background: url("../images/food.jpg");
   font-size: 14px;
 }
+body a {
+  color: #000049;
+}
+body a.button {
+  display: inline-block;
+  border-radius: 5px;
+  padding: .5em;
+  background: #008080;
+  color: white;
+  text-decoration: none;
+}
 #container {
   max-width: 500px;
   margin: 1em auto;
@@ -10,6 +21,31 @@ body {
   border: 1px solid silver;
   border-radius: 15px;
   padding: 1em;
+  overflow: hidden;
+}
+#title-bar {
+  background: #b0a567;
+  text-align: center;
+  margin: -1em;
+  margin-bottom: 10px;
+  color: white;
+  padding: .3em;
+  padding-top: 1em;
+  font-size: 2em;
+}
+#action-bar {
+  background: #b0a567;
+  text-align: center;
+  margin: -1em;
+  margin-top: 20px;
+  color: white;
+  padding: .5em;
+}
+#action-bar a {
+  color: white;
+  font-size: 1.3em;
+  margin: 0 .7em;
+  text-decoration: none;
 }
 #week-planning .week-date {
   border-bottom: 1px dotted silver;
@@ -29,6 +65,18 @@ body {
   font-size: 1.5em;
   color: #1c882e;
 }
+#week-planning .week-date .actions:after {
+  content: " ";
+  /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+#week-planning .week-date .actions a {
+  float: left;
+  margin-right: 1em;
+}
 form .form-row {
   margin-bottom: 1em;
 }
@@ -37,6 +85,7 @@ form .form-row label {
 }
 #dishes-list .dish {
   margin-bottom: .5em;
+  font-size: 1.3em;
 }
 .preparation-time input {
   float: left;

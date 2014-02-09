@@ -32,15 +32,15 @@
                 </div>
             <? } ?>
 
-            <a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>">
-                Suggestion
-            </a>
+            <div class="actions">
+                <a href="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>" class="button">
+                    Suggestion
+                </a>
 
-            <br />
-
-            <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>">
-                Pick myself
-            </a>
+                <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>"  class="button">
+                    Pick myself
+                </a>
+            </div>
         </div>
     <? } ?>
 

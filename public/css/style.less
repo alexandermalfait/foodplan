@@ -2,6 +2,19 @@ body {
     font-family: sans-serif;
     background: url("../images/food.jpg");
     font-size: 14px;
+
+    a {
+        color: #000049;
+    }
+
+    a.button {
+        display: inline-block;
+        border-radius: 5px;
+        padding: .5em;
+        background: #008080;
+        color: white;
+        text-decoration: none;
+    }
 }
 
 #container {
@@ -11,6 +24,34 @@ body {
     border: 1px solid silver;
     border-radius: 15px;
     padding: 1em;
+    overflow: hidden;
+}
+
+#title-bar {
+    background: #b0a567;
+    text-align: center;
+    margin: -1em;
+    margin-bottom: 10px;
+    color: white;
+    padding: .3em;
+    padding-top: 1em;
+    font-size: 2em;
+}
+
+#action-bar {
+    background: #b0a567;
+    text-align: center;
+    margin: -1em;
+    margin-top: 20px;
+    color: white;
+    padding: .5em;
+
+    a {
+        color: white;
+        font-size: 1.3em;
+        margin: 0 .7em;
+        text-decoration: none;
+    }
 }
 
 #week-planning {
@@ -36,6 +77,15 @@ body {
             font-size: 1.5em;
             color: #1c882e;
         }
+
+        .actions {
+            .clearfix;
+
+            a {
+                float: left;
+                margin-right: 1em;
+            }
+        }
     }
 }
 
@@ -52,6 +102,7 @@ form {
 #dishes-list {
     .dish {
         margin-bottom: .5em;
+        font-size: 1.3em;
     }
 }
 
