@@ -13,7 +13,7 @@
     <? } ?>
 <? } ?>
 
-<?= View::make('planning/date', [ 'date' => $date ]) ?>
+<?= View::make('planning/date', [ 'date' => $date ])->render() ?>
 
 <? if($planning) { ?>
     <div class="planned-dish">
@@ -60,7 +60,11 @@
 
         <div class="actions">
             <a href="<?= action('DishesController@getEdit', ['id' => $planning->getDish()->getId() ]) ?>" class="button">
-                Edit this dish
+                Edit dish
+            </a>
+
+            <a href="<?= action('PlanningController@getClearDate', ['date' => date_param($date) ]) ?>" class="button">
+                Clear this day
             </a>
         </div>
     </div>

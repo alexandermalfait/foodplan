@@ -128,6 +128,14 @@ class PlanningController extends BaseController {
         return self::getRedirectToWeek($date);
     }
 
+    public function getClearDate($date) {
+        $date = new DateTime($date);
+
+        $this->deleteExistingPlanning($date);
+
+        return self::getRedirectToWeek($date);
+    }
+
     private function planDish(DateTime $date, Dish $dish) {
         $this->deleteExistingPlanning($date);
 
