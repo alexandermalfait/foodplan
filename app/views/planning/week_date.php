@@ -57,5 +57,11 @@
 
             <input type="file" name="picture" accept="image/*" capture="camera" />
         </form>
+
+        <div class="actions">
+            <a href="<?= action('DishesController@getEdit', ['id' => $planning->getDish()->getId() ]) ?>" class="button">
+                Edit this dish
+            </a>
+        </div>
     </div>
 <? } ?>

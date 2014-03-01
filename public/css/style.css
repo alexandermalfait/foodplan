@@ -128,7 +128,12 @@ body .message {
   margin-top: .4em;
 }
 #week-planning .week-date .more-planning-actions {
+  border-top: 1px dashed silver;
+  margin-top: 1em;
   padding: 1em;
+}
+#week-planning .week-date .more-planning-actions form.add-picture-to-planned-dish {
+  margin-bottom: 1em;
 }
 #week-planning .week-navigation {
   margin-top: 2em;
