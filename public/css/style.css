@@ -115,14 +115,20 @@ body .message {
   font-size: 1.5em;
   color: #cbcdc4;
 }
+#week-planning .week-date .actions a {
+  margin-right: 1em;
+}
 #week-planning .week-date .actions .make-suggestion {
   float: left;
-  margin-right: 2em;
+  margin-right: 1em;
 }
 #week-planning .week-date .actions .make-suggestion .preparation-time {
   float: left;
   margin-right: .5em;
   margin-top: .4em;
+}
+#week-planning .week-date .more-planning-actions {
+  padding: 1em;
 }
 #week-planning .week-navigation {
   margin-top: 2em;

@@ -31,4 +31,12 @@ $(function() {
             return $(this).data('value')
         }
     })
+
+    $('#week-planning button.more-planning-actions-button').click(function() {
+        $(this).closest('.week-date').find('.more-planning-actions').slideToggle()
+    })
+
+    $('form.add-picture-to-planned-dish input[type=file]').change(function() {
+        $(this).closest('form').submit()
+    })
 })

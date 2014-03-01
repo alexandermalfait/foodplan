@@ -84,6 +84,17 @@ class DishesController extends BaseController {
         }
     }
 
+    public function postAddPicture($dishId, $backToDate) {
+        $picture = new DishPicture();
+
+        $picture->setDish(Doctrine::find('Dish', $dishId));
+        $picture->setFilename($this->saveFile("dishes", Input::file('picture')));
+
+        Doctrine::persist($picture);
+
+        return PlanningController::getRedirectToWeek(new DateTime($backToDate));
+    }
+
     protected function saveFile($folder, UploadedFile $file) {
         $targetFolder = public_path("upload/$folder");
 

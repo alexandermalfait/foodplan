@@ -8,7 +8,7 @@ class PlanningController extends BaseController {
     }
 
     public function getIndex() {
-        return $this->getRedirectToWeek(new DateTime());
+        return self::getRedirectToWeek(new DateTime());
     }
 
     public function getWeek($monday) {
@@ -92,7 +92,7 @@ class PlanningController extends BaseController {
             $this->planDish($date, $dish);
         }
 
-        return $this->getRedirectToWeek($date);
+        return self::getRedirectToWeek($date);
     }
 
     /**
@@ -125,7 +125,7 @@ class PlanningController extends BaseController {
 
         $this->planDish($date, Doctrine::find('Dish', $dishId));
 
-        return $this->getRedirectToWeek($date);
+        return self::getRedirectToWeek($date);
     }
 
     private function planDish(DateTime $date, Dish $dish) {
@@ -140,10 +140,7 @@ class PlanningController extends BaseController {
         Doctrine::persist($planning);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function getRedirectToWeek(DateTime $date) {
+    public static function getRedirectToWeek(DateTime $date) {
         return Redirect::to(action("PlanningController@getWeek", ['monday' => date_param(date_get_monday($date))]) . "#" .date_param($date));
     }
 
