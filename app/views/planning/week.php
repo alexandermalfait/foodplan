@@ -20,6 +20,14 @@
         <a name="<?= date_param($date) ?>"></a>
 
         <div class="week-date <?= $row['day_class'] ?>">
+            <? if($planning) { ?>
+                <? foreach($planning->getDish()->getPictures() as $picture) { ?>
+                    <a href="<?= picture_url("dishes/{$picture->getFilename()}") ?>" target="_blank">
+                        <img src="<?= picture_resized_url("dishes/{$picture->getFilename()}", 60, 40) ?>" class="dish-picture" />
+                    </a>
+                <? } ?>
+            <? } ?>
+
             <?= View::make('planning/date', [ 'date' => $date ]) ?>
 
             <? if($planning) { ?>

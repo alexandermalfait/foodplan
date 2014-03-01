@@ -100,6 +100,11 @@ body .message {
 #week-planning .week-date.weekend {
   background: #F8F8F8;
 }
+#week-planning .week-date img.dish-picture {
+  float: right;
+  margin-left: 1em;
+  border: 1px solid cadetblue;
+}
 #week-planning .week-date .planned-dish {
   margin: .3em 0;
   font-size: 1.5em;
