@@ -17,6 +17,9 @@ class PlanningController extends BaseController {
         $dates = [];
 
         foreach(date_get_dates_in_week($monday) as $date) {
+            /**
+             * @var $planning DishPlanning
+             */
             $planning = Doctrine::createQuery(
                 "SELECT p FROM DishPlanning p WHERE p.user = :user AND p.date = :date"
             )
@@ -32,6 +35,16 @@ class PlanningController extends BaseController {
             }
             else if(in_array($date->format('N'), [ 6, 7 ])) {
                 $row['day_class'] = 'weekend';
+            }
+
+            if(Input::get('suggested_date') == date_param($date)) {
+                $row['preparationTime'] = Input::get('suggested_preparation_time');
+            }
+            else if($planning) {
+                $row['preparationTime'] = $planning->getDish()->getPreparationTime();
+            }
+            else {
+                $row['preparationTime'] = null;
             }
 
             $dates[] = $row;
@@ -92,7 +105,7 @@ class PlanningController extends BaseController {
             $this->planDish($date, $dish);
         }
 
-        return self::getRedirectToWeek($date);
+        return self::getRedirectToWeek($date, [ 'suggested_date' => date_param($date), 'suggested_preparation_time' => $maxPreparationTime ]);
     }
 
     /**
@@ -148,8 +161,10 @@ class PlanningController extends BaseController {
         Doctrine::persist($planning);
     }
 
-    public static function getRedirectToWeek(DateTime $date) {
-        return Redirect::to(action("PlanningController@getWeek", ['monday' => date_param(date_get_monday($date))]) . "#" .date_param($date));
+    public static function getRedirectToWeek(DateTime $date, $extraParams = array()) {
+        return Redirect::to(
+            action("PlanningController@getWeek", ['monday' => date_param(date_get_monday($date))]) . "?" . http_build_query($extraParams) . "#" .date_param($date)
+        );
     }
 
-} 
+}

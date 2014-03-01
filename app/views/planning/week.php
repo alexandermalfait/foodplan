@@ -13,7 +13,7 @@
         <a name="<?= date_param($date) ?>"></a>
 
         <div class="week-date <?= $row['day_class'] ?>">
-            <?= View::make('planning/week_date', [ 'date' => $date, 'planning' => $row['planning']])->render() ?>
+            <?= View::make('planning/week_date', $row)->render() ?>
         </div>
     <? } ?>
 

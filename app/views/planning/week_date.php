@@ -2,6 +2,7 @@
 /**
  * @var $date DateTime
  * @var $planning DishPlanning
+ * @var $preparationTime int
  */
 ?>
 
@@ -26,7 +27,7 @@
     <div class="actions">
         <form action="<?= action('PlanningController@getMakeSuggestion', [ 'date' => date_param($date) ]) ?>" class="make-suggestion">
             <div class="preparation-time">
-                <input type="hidden" name="preparation_time" />
+                <input type="hidden" name="preparation_time" value="<?= $preparationTime ?>" />
 
                 <div class="stars"></div>
             </div>
