@@ -16,6 +16,22 @@
         <?= Form::text('min_weeks_between_suggestion', $dish->getMinWeeksBetweenSuggestion(), ['size' => 3]) ?>
     </div>
 
+
+    <div class="form-row">
+        <?= Form::label('picture', "Picture(s)") ?>
+
+        <input type="file" name="picture" accept="image/*" capture="camera" />
+    </div>
+
+    <? foreach($dish->getPictures() as $picture) { ?>
+        <div class="dish-picture">
+            <img src="<?= picture_resized_url("dishes/{$picture->getFilename()}", 200, 100) ?>" />
+
+            <?= Form::checkbox("remove_picture[]", $picture->getId(), false, ['id' => "remove-picture-{$picture->getId()}" ]) ?>
+            <?= Form::label("remove-picture-{$picture->getId()}", "Delete this picture") ?>
+        </div>
+    <? } ?>
+
     <?= Form::submit('Save', [ 'class' => 'button' ]) ?>
 </div>
 

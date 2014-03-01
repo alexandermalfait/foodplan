@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
         "atrauzzi/laravel-doctrine": "dev-master",
-        "barryvdh/laravel-ide-helper": "1.*"
+        "barryvdh/laravel-ide-helper": "1.*",
+        "bkwld/croppa": "~3.0"
     },
 	"autoload": {
 		"classmap": [

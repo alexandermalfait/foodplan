@@ -5,7 +5,7 @@
  */
 ?>
 
-<form action="<?= action('DishesController@postSave') ?>" method="post">
+<form action="<?= action('DishesController@postSave') ?>" method="post" enctype="multipart/form-data">
     <? if($forDate) { ?>
         <?= Form::hidden("for_date", date_param($forDate)) ?>
     <? } ?>

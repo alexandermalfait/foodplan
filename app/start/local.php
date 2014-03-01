@@ -45,3 +45,15 @@ function date_get_dates_in_week(DateTime $monday) {
 
     return $dates;
 }
+
+function picture_resized_url($fileName, $width, $height) {
+    $assetPath = "upload/" . $fileName;
+
+    $croppaUrl = Croppa::url($assetPath, $width, $height, array('resize'));
+
+    return e(asset(dirname($assetPath) . "/" . basename($croppaUrl)));
+}
+
+function picture_url($fileName) {
+    return e(asset("upload/" . $fileName));
+}

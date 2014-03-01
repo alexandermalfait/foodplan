@@ -108,6 +108,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Atrauzzi\LaravelDoctrine\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Bkwld\Croppa\ServiceProvider',
     ),
 
 	/*
@@ -173,7 +174,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-        'Doctrine' => 'Atrauzzi\LaravelDoctrine\Support\Facades\Doctrine',
+        'Doctrine'        => 'Atrauzzi\LaravelDoctrine\Support\Facades\Doctrine',
+        'Croppa'          => 'Bkwld\Croppa\Facade',
 	),
 
 );

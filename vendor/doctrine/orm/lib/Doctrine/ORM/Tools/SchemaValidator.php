@@ -19,7 +19,7 @@
 
 namespace Doctrine\ORM\Tools;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\DBAL\Types\Type;
 
@@ -37,14 +37,14 @@ use Doctrine\DBAL\Types\Type;
 class SchemaValidator
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $em;
 
     /**
-     * @param EntityManager $em
+     * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
@@ -234,20 +234,6 @@ class SchemaValidator
                     }
                 }
             }
-        }
-
-        foreach ($class->reflClass->getProperties(\ReflectionProperty::IS_PUBLIC) as $publicAttr) {
-            if ($publicAttr->isStatic()) {
-                continue;
-            }
-
-            if ( ! isset($class->fieldMappings[$publicAttr->getName()]) &&
-                ! isset($class->associationMappings[$publicAttr->getName()])) {
-                continue;
-            }
-
-            $ce[] = "Field '".$publicAttr->getName()."' in class '".$class->name."' must be private ".
-                    "or protected. Public fields may break lazy-loading.";
         }
 
         foreach ($class->subClasses as $subClass) {

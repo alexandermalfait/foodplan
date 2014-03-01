@@ -5,6 +5,12 @@
 
     <? foreach ($dishes as $dish) { ?>
         <div class="dish">
+            <? foreach($dish->getPictures() as $picture) { ?>
+                <a href="<?= picture_url("dishes/{$picture->getFilename()}") ?>" target="_blank">
+                    <img src="<?= picture_resized_url("dishes/{$picture->getFilename()}", 60, 40) ?>" class="dish-picture" />
+                </a>
+            <? } ?>
+
             <?= link_to_action("DishesController@getEdit", $dish->getName(), ['id' => $dish->getId()]) ?>
 
             (<?= $dish->getMinWeeksBetweenSuggestion() ?>w)

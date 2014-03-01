@@ -16,6 +16,7 @@ Tutorials
    tutorials/ordered-associations
    tutorials/override-field-association-mappings-in-subclasses
    tutorials/pagination.rst
+   tutorials/embeddables.rst
 
 Reference Guide
 ---------------
@@ -59,6 +60,7 @@ Reference Guide
    reference/installation
    reference/advanced-configuration
    reference/second-level-cache
+   reference/security
    
 
 Cookbook

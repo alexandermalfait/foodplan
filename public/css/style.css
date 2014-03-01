@@ -139,6 +139,11 @@ form .form-row label {
   margin-bottom: .5em;
   font-size: 1.3em;
 }
+#dishes-list .dish img.dish-picture {
+  float: right;
+  margin-left: 1em;
+  border: 1px solid cadetblue;
+}
 .preparation-time input {
   float: left;
   margin-right: .5em;
@@ -156,6 +161,15 @@ form .form-row label {
 }
 #dish-form input.dish-name {
   width: 90%;
+}
+#dish-form div.dish-picture {
+  padding: .5em;
+  background: #EEE;
+  margin: 1em 0;
+}
+#dish-form div.dish-picture img {
+  display: block;
+  margin-bottom: .5em;
 }
 .clearfix:after {
   content: " ";

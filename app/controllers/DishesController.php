@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 class DishesController extends BaseController {
 
     function __construct() {
@@ -65,5 +67,32 @@ class DishesController extends BaseController {
         $dish->setName(Input::get('name'));
         $dish->setPreparationTime(Input::get('preparation_time'));
         $dish->setMinWeeksBetweenSuggestion(Input::get('min_weeks_between_suggestion'));
+
+        if (Input::file('picture')) {
+            $picture = new DishPicture();
+
+            $picture->setDish($dish);
+            $picture->setFilename($this->saveFile("dishes", Input::file('picture')));
+
+            $dish->addPicture($picture);
+        }
+
+        if(Input::get('remove_picture')) {
+            foreach(Input::get('remove_picture') as $pictureId) {
+                Doctrine::remove(Doctrine::find('DishPicture', $pictureId));
+            }
+        }
+    }
+
+    protected function saveFile($folder, UploadedFile $file) {
+        $targetFolder = public_path("upload/$folder");
+
+        if (!file_exists($targetFolder)) {
+            if (!mkdir($targetFolder)) {
+                throw new \Symfony\Component\HttpFoundation\File\Exception\FileException("Couldn't create $targetFolder");
+            }
+        }
+
+        return $file->move($targetFolder, time() . "_" . $file->getClientOriginalName())->getBasename();
     }
 } 

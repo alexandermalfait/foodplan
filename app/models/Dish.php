@@ -35,6 +35,12 @@ class Dish extends BaseEntity {
     private $minWeeksBetweenSuggestion;
 
     /**
+     * @var DishPicture[]
+     * @OneToMany(targetEntity="DishPicture", mappedBy="dish", cascade="all")
+     */
+    private $pictures = array();
+
+    /**
      * @param int $minWeeksBetweenSuggestion
      */
     public function setMinWeeksBetweenSuggestion($minWeeksBetweenSuggestion) {
@@ -94,5 +100,23 @@ class Dish extends BaseEntity {
         return $this->getName();
     }
 
+    /**
+     * @param \DishPicture[] $pictures
+     */
+    public function setPictures($pictures) {
+        $this->pictures = $pictures;
+    }
 
-} 
+    /**
+     * @return \DishPicture[]
+     */
+    public function getPictures() {
+        return $this->pictures;
+    }
+
+    public function addPicture(DishPicture $picture) {
+        $this->pictures[] = $picture;
+    }
+
+
+}

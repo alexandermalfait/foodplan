@@ -288,7 +288,7 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
         foreach ($this->class->parentClasses as $parentClass) {
             $parentMetadata = $this->em->getClassMetadata($parentClass);
             $parentTable    = $this->quoteStrategy->getTableName($parentMetadata, $this->platform);
-            
+
             $this->conn->delete($parentTable, $id);
         }
     }
@@ -296,7 +296,7 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
     /**
      * {@inheritdoc}
      */
-    public function getSelectSQL($criteria, $assoc = null, $lockMode = 0, $limit = null, $offset = null, array $orderBy = null)
+    public function getSelectSQL($criteria, $assoc = null, $lockMode = null, $limit = null, $offset = null, array $orderBy = null)
     {
         $joinSql            = '';
         $identifierColumn   = $this->class->getIdentifierColumnNames();
@@ -342,7 +342,7 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
 
         // If the current class in the root entity, add the filters
         if ($filterSql = $this->generateFilterConditionSQL($this->em->getClassMetadata($this->class->rootEntityName), $this->getSQLTableAlias($this->class->rootEntityName))) {
-            $conditionSql .= $conditionSql 
+            $conditionSql .= $conditionSql
                 ? ' AND ' . $filterSql
                 : $filterSql;
         }
@@ -374,11 +374,12 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
         }
 
         $tableName  = $this->quoteStrategy->getTableName($this->class, $this->platform);
+        $from       = ' FROM ' . $tableName . ' ' . $baseTableAlias;
         $where      = $conditionSql != '' ? ' WHERE ' . $conditionSql : '';
+        $lock       = $this->platform->appendLockHint($from, $lockMode);
         $columnList = $this->getSelectColumnsSQL();
         $query      = 'SELECT '  . $columnList
-                    . ' FROM '
-                    . $tableName . ' ' . $baseTableAlias
+                    . $lock
                     . $joinSql
                     . $where
                     . $orderBySql;
@@ -387,16 +388,13 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
     }
 
     /**
-     * Get the FROM and optionally JOIN conditions to lock the entity managed by this persister.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getLockTablesSql()
+    protected function getLockTablesSql($lockMode)
     {
         $joinSql            = '';
         $identifierColumns  = $this->class->getIdentifierColumnNames();
         $baseTableAlias     = $this->getSQLTableAlias($this->class->name);
-        $quotedTableName    = $this->quoteStrategy->getTableName($this->class, $this->platform);
 
         // INNER JOIN parent tables
         foreach ($this->class->parentClasses as $parentClassName) {
@@ -412,7 +410,7 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
             $joinSql .= implode(' AND ', $conditions);
         }
 
-        return 'FROM ' . $quotedTableName . ' ' . $baseTableAlias . $joinSql;
+        return parent::getLockTablesSql($lockMode) . $joinSql;
     }
 
     /**
@@ -488,8 +486,8 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
 
             // Add join columns (foreign keys)
             foreach ($subClass->associationMappings as $mapping) {
-                if ( ! $mapping['isOwningSide'] 
-                        || ! ($mapping['type'] & ClassMetadata::TO_ONE) 
+                if ( ! $mapping['isOwningSide']
+                        || ! ($mapping['type'] & ClassMetadata::TO_ONE)
                         || isset($mapping['inherited'])) {
                     continue;
                 }
@@ -505,17 +503,17 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
         }
 
         $this->selectColumnListSql = implode(', ', $columnList);
-        
+
         return $this->selectColumnListSql;
     }
 
     /**
-     * {@inheritdoc} 
+     * {@inheritdoc}
      */
     protected function getInsertColumnList()
     {
         // Identifier columns must always come first in the column list of subclasses.
-        $columns = $this->class->parentClasses 
+        $columns = $this->class->parentClasses
             ? $this->class->getIdentifierColumnNames()
             : array();
 
