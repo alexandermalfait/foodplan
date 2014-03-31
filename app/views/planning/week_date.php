@@ -27,7 +27,7 @@ else {
 
     <? foreach($dish->getPictures() as $picture) { ?>
         <a href="<?= picture_url("dishes/{$picture->getFilename()}") ?>" target="_blank">
-            <img src="<?= picture_resized_url("dishes/{$picture->getFilename()}", 60, 45) ?>" class="dish-picture" />
+            <img src="<?= picture_resized_url("dishes/{$picture->getFilename()}", 45, 45) ?>" class="dish-picture" />
         </a>
     <? } ?>
 
@@ -75,7 +75,7 @@ else {
             >
             <strong>Add a picture:</strong>
 
-            <input type="file" name="picture" accept="image/*" capture="camera" />
+            <input type="file" name="picture" accept="image/*"  />
         </form>
 
         <div class="actions">

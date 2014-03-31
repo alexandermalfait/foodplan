@@ -24,7 +24,7 @@
     <div class="form-row">
         <?= Form::label('picture', "Picture(s)") ?>
 
-        <input type="file" name="picture" accept="image/*" capture="camera" />
+        <input type="file" name="picture" accept="image/*" />
     </div>
 
     <? foreach($dish->getPictures() as $picture) { ?>
