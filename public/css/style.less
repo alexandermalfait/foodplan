@@ -117,7 +117,16 @@ body {
             float: right;
             margin-left: 1em;
             border: 1px solid cadetblue;
+            border-radius: 3px;
         }
+
+        img.dish-link, img.toggle-notes {
+            float: right;
+            margin-left: 1em;
+            cursor: pointer;
+        }
+
+
 
         .planned-dish {
             margin: .3em 0;
@@ -148,11 +157,13 @@ body {
             }
         }
 
-        .more-planning-actions {
+        .more-planning-actions, .dish-notes {
             border-top: 1px dashed silver;
             margin-top: 1em;
             padding: 1em;
+        }
 
+        .more-planning-actions {
             form.add-picture-to-planned-dish {
                 margin-bottom: 1em;
             }
@@ -190,6 +201,12 @@ form {
             float: right;
             margin-left: 1em;
             border: 1px solid cadetblue;
+            border-radius: 4px;
+        }
+
+        img.dish-link {
+            float: right;
+            margin-left: 1em;
         }
     }
 }
@@ -209,7 +226,7 @@ form {
 
 
 #dish-form {
-    input.dish-name {
+    input.dish-name, input.url {
         width: 90%;
     }
 

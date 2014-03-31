@@ -67,6 +67,8 @@ class DishesController extends BaseController {
         $dish->setName(Input::get('name'));
         $dish->setPreparationTime(Input::get('preparation_time'));
         $dish->setMinWeeksBetweenSuggestion(Input::get('min_weeks_between_suggestion'));
+        $dish->setUrl(Input::get('url'));
+        $dish->setNotes(Input::get('notes'));
 
         if (Input::file('picture')) {
             $picture = new DishPicture();

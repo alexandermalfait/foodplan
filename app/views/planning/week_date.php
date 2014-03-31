@@ -4,21 +4,40 @@
  * @var $planning DishPlanning
  * @var $preparationTime int
  */
+
+if ($planning) {
+    $dish = $planning->getDish();
+}
+else {
+    $dish = null;
+}
+
 ?>
 
 <? if($planning) { ?>
-    <? foreach($planning->getDish()->getPictures() as $picture) { ?>
+    <? if($dish->getUrl()) { ?>
+        <a href="<?= format_url($dish->getUrl()) ?>" target="_blank">
+            <img src="<?= asset('images/link.png') ?>" class="dish-link" />
+        </a>
+    <? } ?>
+
+    <? if($dish->getNotes()) { ?>
+        <img src="<?= asset('images/notes.png') ?>" class="toggle-notes" />
+    <? } ?>
+
+    <? foreach($dish->getPictures() as $picture) { ?>
         <a href="<?= picture_url("dishes/{$picture->getFilename()}") ?>" target="_blank">
             <img src="<?= picture_resized_url("dishes/{$picture->getFilename()}", 60, 45) ?>" class="dish-picture" />
         </a>
     <? } ?>
+
 <? } ?>
 
 <?= View::make('planning/date', [ 'date' => $date ])->render() ?>
 
 <? if($planning) { ?>
     <div class="planned-dish">
-        <?= $planning->getDish() ?>
+        <?= $dish ?>
     </div>
 <? } else { ?>
     <div class="no-planned-dish">???</div>
@@ -51,7 +70,7 @@
         <form
             method="post"
             enctype="multipart/form-data"
-            action="<?= action('DishesController@postAddPicture', [ 'dishId' => $planning->getDish()->getId(), 'backToDate' => date_param($date) ] ) ?>"
+            action="<?= action('DishesController@postAddPicture', [ 'dishId' => $dish->getId(), 'backToDate' => date_param($date) ] ) ?>"
             class="add-picture-to-planned-dish"
             >
             <strong>Add a picture:</strong>
@@ -60,7 +79,7 @@
         </form>
 
         <div class="actions">
-            <a href="<?= action('DishesController@getEdit', ['id' => $planning->getDish()->getId() ]) ?>" class="button">
+            <a href="<?= action('DishesController@getEdit', ['id' => $dish->getId() ]) ?>" class="button">
                 Edit dish
             </a>
 
@@ -68,5 +87,11 @@
                 Clear this day
             </a>
         </div>
+    </div>
+<? } ?>
+
+<? if($dish && $dish->getNotes()) { ?>
+    <div class="dish-notes" style="display: none">
+        <?= nl2br($dish->getNotes()) ?>
     </div>
 <? } ?>

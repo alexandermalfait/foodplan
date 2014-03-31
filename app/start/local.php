@@ -57,3 +57,11 @@ function picture_resized_url($fileName, $width, $height) {
 function picture_url($fileName) {
     return e(asset("upload/" . $fileName));
 }
+
+function format_url($url) {
+    if(!starts_with(strtolower($url), 'http')) {
+        $url = 'http://' . $url;
+    }
+
+    return $url;
+}

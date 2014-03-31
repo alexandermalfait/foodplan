@@ -40,6 +40,19 @@ class Dish extends BaseEntity {
      */
     private $pictures = array();
 
+
+    /**
+     * @var string
+     * @Column(type="text", nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var string
+     * @Column(type="text", nullable=true)
+     */
+    private $notes;
+
     /**
      * @param int $minWeeksBetweenSuggestion
      */
@@ -117,6 +130,36 @@ class Dish extends BaseEntity {
     public function addPicture(DishPicture $picture) {
         $this->pictures[] = $picture;
     }
+
+    /**
+     * @return string
+     */
+    public function getNotes() {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $notes
+     */
+    public function setNotes($notes) {
+        $this->notes = $notes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl() {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url) {
+        $this->url = $url;
+    }
+
+
 
 
 }
