@@ -72,7 +72,30 @@ $(function() {
         else {
             $('#dishes-list .dish').show()
         }
+    })
+})
 
+$(function() {
+    $('.vegetarian-selector input[type=hidden]').change(function() {
+        if($(this).val() == "true") {
+            $(this).nextAll('.vegetarian').show()
+            $(this).nextAll('.not-vegetarian').hide()
+        }
+        else {
+            $(this).nextAll('.vegetarian').hide()
+            $(this).nextAll('.not-vegetarian').show()
+        }
     })
 
+    $('.vegetarian-selector input[type=hidden]').change()
+
+    $('.vegetarian-selector .not-vegetarian').click(function() {
+        $(this).prevAll('input[type=hidden]').val(true)
+        $(this).prevAll('input[type=hidden]').change()
+    })
+
+    $('.vegetarian-selector .vegetarian').click(function() {
+        $(this).prevAll('input[type=hidden]').val(false)
+        $(this).prevAll('input[type=hidden]').change()
+    })
 })

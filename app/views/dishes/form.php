@@ -17,6 +17,12 @@
     </div>
 
     <div class="form-row">
+        <?= Form::label('vegetarian', "Veggie?") ?>
+
+        <?= View::make('dishes/vegetarian_selector', [ 'state' => $dish->isVegetarian() ])->render() ?>
+    </div>
+
+    <div class="form-row">
         <?= Form::label('url', "URL") ?>
         <?= Form::text('url', $dish->getUrl(), [ 'size' => 40, 'class' => 'url']) ?>
     </div>

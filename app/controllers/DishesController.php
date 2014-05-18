@@ -69,6 +69,7 @@ class DishesController extends BaseController {
         $dish->setMinWeeksBetweenSuggestion(Input::get('min_weeks_between_suggestion'));
         $dish->setUrl(Input::get('url'));
         $dish->setNotes(Input::get('notes'));
+        $dish->setVegetarian(Input::get('vegetarian') == "true");
 
         if (Input::file('picture')) {
             $picture = new DishPicture();

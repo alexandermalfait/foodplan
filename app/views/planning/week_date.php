@@ -3,6 +3,7 @@
  * @var $date DateTime
  * @var $planning DishPlanning
  * @var $preparationTime int
+ * @var $vegetarian bool
  */
 
 if ($planning) {
@@ -51,7 +52,9 @@ else {
                 <div class="stars"></div>
             </div>
 
-            <button class="button" type="submit">Suggestion</button>
+            <?= View::make('dishes/vegetarian_selector', ['state' => $vegetarian ]) ?>
+
+            <button class="button" type="submit">Suggest</button>
         </form>
 
         <a href="<?= action('PlanningController@getPickDish', [ 'date' => date_param($date) ]) ?>"  class="button">
