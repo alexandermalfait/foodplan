@@ -43,4 +43,36 @@ $(function() {
     $('form.add-picture-to-planned-dish input[type=file]').change(function() {
         $(this).closest('form').submit()
     })
+
+    $("#dishes-list #search").focus(function() {
+        if(this.value == "Search...") {
+            this.value = ""
+        }
+    })
+
+    $("#dishes-list #search").keyup(function() {
+        function isTextMatch(text, search) {
+            text = text.replace(/[^\w]/g, "").toLowerCase()
+            search = search.replace(/[^\w]/g, "").toLowerCase()
+
+            return text.indexOf(search) >= 0
+        }
+
+        var searchText = $(this).val()
+
+        if(searchText) {
+            $('#dishes-list .dish').hide()
+
+            $('.dish-name').each(function() {
+                if(isTextMatch($(this).text(), searchText)) {
+                    $(this).closest('div.dish').show()
+                }
+            })
+        }
+        else {
+            $('#dishes-list .dish').show()
+        }
+
+    })
+
 })
