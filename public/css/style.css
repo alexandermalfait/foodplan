@@ -141,6 +141,13 @@ body .message {
 #week-planning .week-date .actions .make-suggestion button {
   margin-left: 1em;
 }
+#week-planning .week-date .actions .make-suggestion .vegetarian-selector img {
+  height: 20px;
+  vertical-align: middle;
+}
+#week-planning .week-date .actions .make-suggestion button {
+  margin-left: 1em;
+}
 #week-planning .week-date .more-planning-actions,
 #week-planning .week-date .dish-notes {
   border-top: 1px dashed silver;
