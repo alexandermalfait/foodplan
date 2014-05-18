@@ -12,5 +12,5 @@ body {
 }
 
 #week-planning .week-date .actions .preparation-time {
-    margin-right: 0;
+    margin-right: 0 !important;
 }

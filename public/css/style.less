@@ -151,8 +151,19 @@ body {
 
                 .preparation-time {
                     float: left;
-                    margin-right: .5em;
                     margin-top: .4em;
+                    margin-right: .5em;
+                }
+
+                .vegetarian-selector {
+                    img {
+                        height: 20px;
+                        vertical-align: middle;
+                    }
+                }
+
+                button {
+                    margin-left: 1em;
                 }
             }
         }
@@ -202,16 +213,14 @@ form {
         margin-bottom: .5em;
         font-size: 1.3em;
 
-        img.dish-picture {
+        img.dish-picture, img.dish-link, img.vegetarian {
             float: right;
             margin-left: 1em;
-            border: 1px solid cadetblue;
-            border-radius: 4px;
         }
 
-        img.dish-link {
-            float: right;
-            margin-left: 1em;
+        img.dish-picture {
+            border: 1px solid cadetblue;
+            border-radius: 4px;
         }
     }
 }
@@ -233,6 +242,11 @@ form {
 #dish-form {
     input.dish-name, input.url {
         width: 90%;
+    }
+
+    .vegetarian-selector {
+        display: block;
+        margin-top: .5em;
     }
 
     div.dish-picture {

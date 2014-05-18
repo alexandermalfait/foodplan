@@ -1,5 +1,9 @@
 <? /** @var $dish Dish */ ?>
 
+<? if($dish->isVegetarian()) { ?>
+    <img src="<?= asset('images/vegetarian.png') ?>" class="vegetarian" />
+<? } ?>
+
 <? if($dish->getUrl()) { ?>
     <a href="<?= format_url($dish->getUrl()) ?>" target="_blank">
         <img src="<?= asset('images/link.png') ?>" class="dish-link" />

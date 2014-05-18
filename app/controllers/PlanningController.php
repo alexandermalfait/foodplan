@@ -39,12 +39,15 @@ class PlanningController extends BaseController {
 
             if(Input::get('suggested_date') == date_param($date)) {
                 $row['preparationTime'] = Input::get('suggested_preparation_time');
+                $row['vegetarian'] = Input::get('suggested_vegetarian') == true;
             }
             else if($planning) {
                 $row['preparationTime'] = $planning->getDish()->getPreparationTime();
+                $row['vegetarian'] = $planning->getDish()->isVegetarian();
             }
             else {
                 $row['preparationTime'] = null;
+                $row['vegetarian'] = false;
             }
 
             $dates[] = $row;
@@ -62,6 +65,7 @@ class PlanningController extends BaseController {
 
     public function getMakeSuggestion($date) {
         $maxPreparationTime = intval(Input::get('preparation_time', 0));
+        $vegetarian = Input::get('vegetarian') == "true";
 
         $date = new DateTime($date);
 
@@ -75,6 +79,10 @@ class PlanningController extends BaseController {
 
         if ($maxPreparationTime > 0) {
             $query = $query->andWhere("d.preparationTime <= $maxPreparationTime");
+        }
+
+        if ($vegetarian) {
+            $query = $query->andWhere("d.vegetarian = true");
         }
 
         $possibleDishes = $query->getQuery()->getResult();
@@ -105,7 +113,10 @@ class PlanningController extends BaseController {
             $this->planDish($date, $dish);
         }
 
-        return self::getRedirectToWeek($date, [ 'suggested_date' => date_param($date), 'suggested_preparation_time' => $maxPreparationTime ]);
+        return self::getRedirectToWeek(
+            $date,
+            [ 'suggested_date' => date_param($date), 'suggested_preparation_time' => $maxPreparationTime, 'suggested_vegetarian' => $vegetarian ]
+        );
     }
 
     /**
