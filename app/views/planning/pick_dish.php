@@ -8,6 +8,8 @@
 
     <? foreach ($dishes as $dish) { ?>
         <div class="dish">
+            <?= View::make('dishes/links', [ 'dish' => $dish ])->render() ?>
+
             <?= link_to_action("PlanningController@getSavePickDish", $dish->getName(), ['date' => date_param($date), 'dishId' => $dish->getId()]) ?>
 
             (<?= $dish->getMinWeeksBetweenSuggestion() ?>w)
