@@ -11,7 +11,7 @@ class DishesController extends BaseController {
 
     public function getIndex() {
         $dishes = Doctrine::createQuery(
-            "SELECT d FROM Dish d WHERE d.user = :user ORDER BY d.name"
+            "SELECT d FROM Dish d WHERE d.user = :user AND d.deleted = false ORDER BY d.name"
         )
         ->setParameter("user", $this->getCurrentUser())
         ->execute();
@@ -96,6 +96,12 @@ class DishesController extends BaseController {
         Doctrine::persist($picture);
 
         return PlanningController::getRedirectToWeek(new DateTime($backToDate));
+    }
+
+    public function getDelete($id) {
+        Doctrine::find("Dish", $id)->setDeleted(true);
+        
+        return Redirect::action("DishesController@getIndex");
     }
 
     protected function saveFile($folder, UploadedFile $file) {

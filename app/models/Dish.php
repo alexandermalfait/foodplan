@@ -60,6 +60,12 @@ class Dish extends BaseEntity {
     private $vegetarian;
 
     /**
+     * @var bool
+     * @Column(type="boolean", nullable=false, columnDefinition="boolean default false")
+     */
+    private $deleted;
+
+    /**
      * @param int $minWeeksBetweenSuggestion
      */
     public function setMinWeeksBetweenSuggestion($minWeeksBetweenSuggestion) {
@@ -178,5 +184,21 @@ class Dish extends BaseEntity {
     public function setVegetarian($vegetarian) {
         $this->vegetarian = $vegetarian;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isDeleted() {
+        return $this->deleted;
+    }
+
+    /**
+     * @param boolean $deleted
+     */
+    public function setDeleted($deleted) {
+        $this->deleted = $deleted;
+    }
+
+
 
 }

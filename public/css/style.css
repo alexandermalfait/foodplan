@@ -223,6 +223,10 @@ form .form-row label {
   display: block;
   margin-bottom: .5em;
 }
+.delete-dish {
+  float: right;
+  background: #cd231c !important;
+}
 .clearfix:after {
   content: " ";
   /* Older browser do not support empty content */

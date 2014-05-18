@@ -77,6 +77,8 @@ class PlanningController extends BaseController {
         $query = $query->andWhere("d.user = :user");
         $query->setParameter("user", $this->getCurrentUser());
 
+        $query = $query->andWhere("d.deleted = false");
+
         if ($maxPreparationTime > 0) {
             $query = $query->andWhere("d.preparationTime <= $maxPreparationTime");
         }
@@ -134,7 +136,7 @@ class PlanningController extends BaseController {
         $date = new DateTime($date);
 
         $dishes = Doctrine::createQuery(
-            "SELECT d FROM Dish d WHERE d.user = :user ORDER BY d.name"
+            "SELECT d FROM Dish d WHERE d.user = :user AND d.deleted = false ORDER BY d.name"
         )
         ->setParameter("user", $this->getCurrentUser())
         ->execute();
