@@ -8,9 +8,9 @@ class UsersController extends BaseController {
 
     public function postExecuteLogin() {
         $user = Doctrine::createQuery(
-            "SELECT u FROM AppUser u WHERE u.email = :email AND u.password = :password"
+            "SELECT u FROM AppUser u WHERE LOWER(u.email) = :email AND u.password = :password"
         )
-        ->setParameter("email", Input::get('email'))
+        ->setParameter("email", strtolower(Input::get('email')))
         ->setParameter("password", Input::get('password'))
         ->getOneOrNullResult();
 
