@@ -63,7 +63,7 @@ class Dish extends BaseEntity {
      * @var bool
      * @Column(type="boolean", nullable=false, columnDefinition="boolean default false")
      */
-    private $deleted;
+    private $deleted = false;
 
     /**
      * @param int $minWeeksBetweenSuggestion
