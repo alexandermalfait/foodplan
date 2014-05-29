@@ -1,13 +1,22 @@
 <? /** @var $dishes Dish[] */ ?>
 
 <div id="dishes-list">
-    <?= link_to_action("DishesController@getCreate", "Create new dish", [], [ 'class' => 'button create-new']) ?>
+    <input type="text" id="search" value="Search..." size="20" autocomplete="off" />
+
+    <?= link_to_action(
+        "DishesController@getCreate",
+        "Create new dish",
+        [],
+        [ 'class' => 'button create-new', 'style' => 'float: right;']
+    ) ?>
+
+    <div class="clearfix"></div>
 
     <? foreach ($dishes as $dish) { ?>
         <div class="dish">
             <?= View::make('dishes/links', [ 'dish' => $dish ])->render() ?>
 
-            <?= link_to_action("DishesController@getEdit", $dish->getName(), ['id' => $dish->getId()]) ?>
+            <?= link_to_action("DishesController@getEdit", $dish->getName(), ['id' => $dish->getId()], ['class' => 'dish-name']) ?>
 
             (<?= $dish->getMinWeeksBetweenSuggestion() ?>w)
 

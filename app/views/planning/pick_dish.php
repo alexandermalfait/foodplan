@@ -4,7 +4,7 @@
 <?= View::make('planning/date', [ 'date' => $date ]) ?>
 
 <div id="dishes-list">
-    <input type="text" id="search" value="Search..." size="20" />
+    <input type="text" id="search" value="Search..." size="20" autocomplete="off" />
 
     <?= link_to_action(
         "DishesController@getCreate",
