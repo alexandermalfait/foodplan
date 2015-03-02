@@ -30,7 +30,7 @@ class UsersController extends BaseController {
 
         Doctrine::persist($user);
 
-        return Redirect::home();
+        return Redirect::action('UsersController@getLogin', [ 'message' => "You're registered! Login below." ]);
     }
 
 
@@ -50,5 +50,38 @@ class UsersController extends BaseController {
         $response->withCookie(Cookie::forget("user_password"));
 
         return $response;
+    }
+
+    public function getCopyAllDishes($fromUserId, $toUserId) {
+        $fromUser = Doctrine::find('AppUser', $fromUserId);
+        $toUser = Doctrine::find('AppUser', $toUserId);
+
+        /** @var Dish[] $dishes */
+        $dishes = Doctrine::createQuery(
+            "SELECT d FROM Dish d WHERE d.user = :user"
+        )->setParameter("user", $fromUser)->getResult();
+
+        $numCopied = 0;
+
+        foreach($dishes as $dish) {
+            if(sizeof($dish->getPictures()) || $dish->getNotes() || $dish->getUrl()) {
+                $copy = clone $dish;
+
+                $copy->setUser($toUser);
+
+                Doctrine::persist($copy);
+
+                foreach($dish->getPictures() as $picture) {
+                    $pictureCopy = clone $picture;
+                    $pictureCopy->setDish($copy);
+
+                    Doctrine::persist($pictureCopy);
+                }
+
+                $numCopied++;
+            }
+        }
+
+        return "$numCopied dishes copied";
     }
 }
