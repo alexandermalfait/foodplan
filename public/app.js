@@ -26,6 +26,7 @@ $(function() {
         number: 5,
         path: BASE_URL + "/raty-2.5.2/lib/img",
         readOnly: true,
+        width: 120,
 
         score: function() {
             return $(this).data('value')
